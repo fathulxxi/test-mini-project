@@ -13,10 +13,9 @@ export default function Sidebar() {
 
   return (
     <div className="w-64 bg-white/80 backdrop-blur-sm border-r border-slate-200/60 flex flex-col h-full">
-      <div className="p-6 border-b border-slate-200/60">
+      <div className="h-16 px-6 border-b border-slate-200/60 flex flex-col justify-center">
         <p className="text-xs text-slate-500 uppercase tracking-wider">Welcome</p>
         <p className="font-semibold text-slate-900 mt-0.5">{user?.firstName} {user?.lastName}</p>
-        <div className="mt-3 h-1 w-8 bg-linear-to-r from-indigo-500 to-indigo-600 rounded-full"></div>
       </div>
       <nav className="flex-1 p-4 space-y-1">
         <NavLink
