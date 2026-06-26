@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Button from '../ui/Button';
 import Input from '../ui/Input';
+import { productSchema } from '../../validation/productSchema';
 
 export default function ProductForm({
   initialData = {},
@@ -31,38 +32,33 @@ export default function ProductForm({
       ...prev,
       [name]: value,
     }));
-  };
-
-  const validate = () => {
-    const newErrors = {};
-
-    if (!form.title.trim()) {
-      newErrors.title = 'Title is required';
+    if (errors[name]) {
+      setErrors((prev) => ({ ...prev, [name]: undefined }));
     }
-
-    if (!form.price) {
-      newErrors.price = 'Price is required';
-    } else if (isNaN(Number(form.price))) {
-      newErrors.price = 'Price must be a valid number';
-    }
-
-    if (!form.stock) {
-      newErrors.stock = 'Stock is required';
-    } else if (isNaN(Number(form.stock))) {
-      newErrors.stock = 'Stock must be a valid number';
-    }
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!validate()) {
+    const parsed = productSchema.safeParse({
+      ...form,
+      price: form.price === '' ? undefined : Number(form.price),
+      stock: form.stock === '' ? undefined : Number(form.stock),
+    });
+
+    if (!parsed.success) {
+      const fieldErrors = {};
+      for (const issue of parsed.error.issues) {
+        const field = issue.path[0];
+        if (field && !fieldErrors[field]) {
+          fieldErrors[field] = issue.message;
+        }
+      }
+      setErrors(fieldErrors);
       return;
     }
 
+    setErrors({});
     onSubmit({
       ...form,
       price: Number(form.price),
@@ -88,6 +84,7 @@ export default function ProductForm({
           value={form.brand}
           onChange={handleChange}
           placeholder="Product brand"
+          error={errors.brand}
         />
       </div>
 
@@ -98,6 +95,7 @@ export default function ProductForm({
           value={form.category}
           onChange={handleChange}
           placeholder="Product category"
+          error={errors.category}
         />
 
         <Input
@@ -130,8 +128,15 @@ export default function ProductForm({
           onChange={handleChange}
           placeholder="Product description"
           rows="4"
-          className="px-3 py-2 border border-gray-300 rounded-lg text-sm outline-none transition-colors focus:border-blue-500 focus:ring-2 focus:ring-blue-100 resize-none"
+          className={`px-3 py-2 border rounded-lg text-sm outline-none transition-colors resize-none ${
+            errors.description
+              ? 'border-red-400 focus:ring-2 focus:ring-red-200'
+              : 'border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-100'
+          }`}
         />
+        {errors.description && (
+          <p className="text-xs text-red-500">{errors.description}</p>
+        )}
       </div>
 
       {onCancel ? (

@@ -30,7 +30,7 @@ export default function AddProductPage() {
     <div className="space-y-6">
       <h1 className="text-xl font-bold">Add Product</h1>
       <div className="bg-white border border-gray-200 rounded-xl p-6">
-        <ProductForm onSubmit={handleSubmit} loading={loading} submitLabel="Add Product" />
+        <ProductForm onSubmit={handleSubmit} onCancel={() => navigate(-1)} loading={loading} submitLabel="Add Product" />
       </div>
     </div>
   );
