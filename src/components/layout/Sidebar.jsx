@@ -26,7 +26,7 @@ export default function Sidebar() {
             `block px-3 py-2 rounded-lg text-sm transition-all duration-200 ${
               isActive
                 ? 'bg-indigo-50 text-indigo-700 border border-indigo-100/60 font-medium'
-                : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
+                : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900 border border-transparent'
             }`
           }
         >
@@ -38,7 +38,7 @@ export default function Sidebar() {
             `block px-3 py-2 rounded-lg text-sm transition-all duration-200 ${
               isActive
                 ? 'bg-indigo-50 text-indigo-700 border border-indigo-100/60 font-medium'
-                : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
+                : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900 border border-transparent'
             }`
           }
         >
