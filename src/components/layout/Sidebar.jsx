@@ -12,17 +12,22 @@ export default function Sidebar() {
   };
 
   return (
-    <div className="w-64 bg-white border-r flex flex-col h-full">
-      <div className="p-6 border-b">
-        <p className="text-xs text-gray-500 uppercase">Welcome</p>
-        <p className="font-semibold">{user?.firstName} {user?.lastName}</p>
+    <div className="w-64 bg-white/80 backdrop-blur-sm border-r border-slate-200/60 flex flex-col h-full">
+      <div className="p-6 border-b border-slate-200/60">
+        <p className="text-xs text-slate-500 uppercase tracking-wider">Welcome</p>
+        <p className="font-semibold text-slate-900 mt-0.5">{user?.firstName} {user?.lastName}</p>
+        <div className="mt-3 h-1 w-8 bg-linear-to-r from-indigo-500 to-indigo-600 rounded-full"></div>
       </div>
       <nav className="flex-1 p-4 space-y-1">
         <NavLink
           to="/"
           end
           className={({ isActive }) =>
-            `block px-3 py-2 rounded-md text-sm ${isActive ? 'bg-blue-50 text-blue-700' : 'text-gray-600 hover:bg-gray-50'}`
+            `block px-3 py-2 rounded-lg text-sm transition-all duration-200 ${
+              isActive
+                ? 'bg-indigo-50 text-indigo-700 border border-indigo-100/60 font-medium'
+                : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
+            }`
           }
         >
           Home
@@ -30,16 +35,20 @@ export default function Sidebar() {
         <NavLink
           to="/products"
           className={({ isActive }) =>
-            `block px-3 py-2 rounded-md text-sm ${isActive ? 'bg-blue-50 text-blue-700' : 'text-gray-600 hover:bg-gray-50'}`
+            `block px-3 py-2 rounded-lg text-sm transition-all duration-200 ${
+              isActive
+                ? 'bg-indigo-50 text-indigo-700 border border-indigo-100/60 font-medium'
+                : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
+            }`
           }
         >
           Products
         </NavLink>
       </nav>
-      <div className="p-4 border-t">
+      <div className="p-4 border-t border-slate-200/60">
         <button
           onClick={handleLogout}
-          className="text-red-600 hover:bg-red-50 w-full text-left px-3 py-2 rounded-md text-sm"
+          className="text-red-600 hover:bg-red-50 w-full text-left px-3 py-2 rounded-lg text-sm transition-all duration-200"
         >
           Logout
         </button>
