@@ -1,16 +1,43 @@
-# React + Vite
+# React Mini Project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Live Demo:** [https://test-mini-project.vercel.app/](https://test-mini-project.vercel.app/)
 
-Currently, two official plugins are available:
+A product management dashboard built with React 19 and Vite, featuring authentication, product CRUD, and a clean layout shell.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Stack
 
-## React Compiler
+- **React 19** + **Vite** — UI and dev server
+- **React Router v7** — client-side routing
+- **Zustand 5** — global state (auth + products), auth persisted to `localStorage`
+- **Tailwind CSS v4** — utility-first styling via PostCSS
+- **Axios** — HTTP client
+- **dummyjson.com** — public REST API (no local server required)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Features
 
-## Expanding the ESLint configuration
+- JWT-based login via `dummyjson.com/auth/login`
+- Protected routes — redirects to `/login` if unauthenticated
+- Product list with pagination and search
+- Add / edit / delete products
+- Fixed sidebar + navbar layout shell
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Routes
+
+| Path | Description |
+|------|-------------|
+| `/login` | Public login page |
+| `/` | Home page (protected) |
+| `/products` | Product list (protected) |
+| `/products/add` | Add product (protected) |
+| `/products/:id` | Product detail (protected) |
+| `/products/:id/edit` | Edit product (protected) |
+
+## Commands
+
+```bash
+npm install        # Install dependencies
+npm run dev        # Start dev server
+npm run build      # Production build
+npm run preview    # Preview production build
+npm run lint       # ESLint
+```
