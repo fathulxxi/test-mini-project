@@ -18,6 +18,7 @@ export default function AddProductPage() {
     try {
       const response = await addProduct(token, data);
       addProductToStore(response.data);
+      addToast('Product added successfully', 'success');
       navigate('/products');
     } catch (err) {
       addToast(err.message || 'Failed to add product');

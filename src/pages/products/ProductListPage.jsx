@@ -8,6 +8,7 @@ import Button from '../../components/ui/Button';
 import Input from '../../components/ui/Input';
 import Modal from '../../components/ui/Modal';
 import Loader from '../../components/ui/Loader';
+import useToastStore from '../../store/useToastStore';
 
 const LIMIT = 10;
 
@@ -30,6 +31,7 @@ export default function ProductListPage() {
   const [skip, setSkip] = useState(0);
   const [deleteTarget, setDeleteTarget] = useState(null);
   const [deleting, setDeleting] = useState(false);
+  const addToast = useToastStore((state) => state.addToast);
 
   const debouncedSearch = useDebounce(searchQuery, 400);
 
@@ -68,6 +70,7 @@ export default function ProductListPage() {
     try {
       await deleteProduct(token, deleteTarget.id);
       removeProduct(deleteTarget.id);
+      addToast(`Product ${deleteTarget?.title} successfully deleted`, 'success');
       setDeleteTarget(null);
     } catch (err) {
       setError(err.message);
