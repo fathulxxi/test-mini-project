@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useAuthStore from '../../store/useAuthStore';
 import useProductStore from '../../store/useProductStore';
+import useToastStore from '../../store/useToastStore';
 import { addProduct } from '../../api/productApi';
 import ProductForm from '../../components/product/ProductForm';
 
@@ -10,6 +11,7 @@ export default function AddProductPage() {
   const navigate = useNavigate();
   const token = useAuthStore((state) => state.token);
   const addProductToStore = useProductStore((state) => state.addProduct);
+  const addToast = useToastStore((state) => state.addToast);
 
   const handleSubmit = async (data) => {
     setLoading(true);
@@ -17,6 +19,8 @@ export default function AddProductPage() {
       const response = await addProduct(token, data);
       addProductToStore(response.data);
       navigate('/products');
+    } catch (err) {
+      addToast(err.message || 'Failed to add product');
     } finally {
       setLoading(false);
     }

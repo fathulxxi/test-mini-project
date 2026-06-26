@@ -81,13 +81,18 @@ export default function ProductListPage() {
 
   return (
     <div className="space-y-6">
-      <div className="max-w-md">
-        <Input
-          type="text"
-          placeholder="Search products..."
-          value={searchQuery}
-          onChange={handleSearch}
-        />
+      <div className="w-full flex items-center justify-between gap-4">
+        <div className="w-108">
+          <Input
+            type="text"
+            placeholder="Search products..."
+            value={searchQuery}
+            onChange={handleSearch}
+          />
+        </div>
+        <Button className="w-44" onClick={() => navigate('/products/add')}>
+          Add Product
+        </Button>
       </div>
 
       {loading && <Loader />}

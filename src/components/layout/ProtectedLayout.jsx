@@ -2,6 +2,7 @@ import { Navigate, Outlet } from 'react-router-dom';
 import useAuthStore from '../../store/useAuthStore';
 import Sidebar from './Sidebar';
 import Navbar from './Navbar';
+import Toast from '../ui/Toast';
 
 export default function ProtectedLayout() {
   const isAuthenticated = useAuthStore((s) => s.isAuthenticated);
@@ -17,6 +18,7 @@ export default function ProtectedLayout() {
           <Outlet />
         </main>
       </div>
+      <Toast />
     </div>
   );
 }

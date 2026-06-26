@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { getProductById, updateProduct } from '../../api/productApi';
 import useAuthStore from '../../store/useAuthStore';
 import useProductStore from '../../store/useProductStore';
+import useToastStore from '../../store/useToastStore';
 import ProductForm from '../../components/product/ProductForm';
 import Button from '../../components/ui/Button';
 import Loader from '../../components/ui/Loader';
@@ -13,6 +14,7 @@ export default function EditProductPage() {
   const token = useAuthStore((state) => state.token);
   const updateStoreProduct = useProductStore((state) => state.updateProduct);
 
+  const addToast = useToastStore((state) => state.addToast);
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(false);
 
@@ -22,7 +24,7 @@ export default function EditProductPage() {
         const res = await getProductById(token, id);
         setProduct(res.data);
       } catch (err) {
-        console.error('Failed to fetch product:', err);
+        addToast(err.message || 'Failed to load product');
       }
     };
 
@@ -40,7 +42,7 @@ export default function EditProductPage() {
       updateStoreProduct(Number(id), res.data);
       navigate('/products');
     } catch (err) {
-      console.error('Failed to update product:', err);
+      addToast(err.message || 'Failed to save product');
     } finally {
       setLoading(false);
     }
