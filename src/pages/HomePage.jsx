@@ -27,37 +27,6 @@ export default function HomePage() {
             </div>
           </div>
         </div>
-
-        {/* Feature Hints (optional guidance) */}
-        <div className="mt-8 sm:mt-12 grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-          <div className="rounded-xl bg-white/40 backdrop-blur-sm border border-slate-200/40 p-4 sm:p-6 hover:bg-white/60 hover:border-slate-300/60 transition-all duration-300">
-            <div className="flex items-start space-x-3">
-              <div className="shrink-0 mt-1">
-                <div className="flex h-6 w-6 items-center justify-center rounded-lg bg-indigo-100">
-                  <span className="text-sm font-semibold text-indigo-600">→</span>
-                </div>
-              </div>
-              <div>
-                <p className="text-sm font-semibold text-slate-900">Navigate</p>
-                <p className="mt-1 text-sm text-slate-600">Use the sidebar menu to explore different sections</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="rounded-xl bg-white/40 backdrop-blur-sm border border-slate-200/40 p-4 sm:p-6 hover:bg-white/60 hover:border-slate-300/60 transition-all duration-300">
-            <div className="flex items-start space-x-3">
-              <div className="shrink-0 mt-1">
-                <div className="flex h-6 w-6 items-center justify-center rounded-lg bg-indigo-100">
-                  <span className="text-sm font-semibold text-indigo-600">★</span>
-                </div>
-              </div>
-              <div>
-                <p className="text-sm font-semibold text-slate-900">Explore</p>
-                <p className="mt-1 text-sm text-slate-600">Discover all available features and products</p>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   );
