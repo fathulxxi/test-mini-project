@@ -62,7 +62,7 @@ export default function LoginPage() {
           </div>
         )}
 
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="space-y-4">
           <Input
             label="Username"
             type="text"
@@ -78,7 +78,7 @@ export default function LoginPage() {
             name="password"
             value={form.password}
             onChange={handleChange}
-            className="w-full mt-4"
+            className="w-full"
           />
 
           <Button
